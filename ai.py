@@ -27,7 +27,8 @@ def determine_action(current_action, reward_n):
     if (reward_n[0] > 0):
         next_action = current_action #keep doing what you are doing
     else:
-        next_action = random.choice([FORWARD, RIGHT, LEFT]) #no rewards means we need to do something else
+        print("ACTION CHANGED")
+        next_action = random.choice(list(filter(lambda x: x != current_action, [FORWARD, RIGHT, LEFT]))) #no rewards means we need to do something else
     return next_action
 
 if __name__ == "__main__":
