@@ -7,7 +7,8 @@ RIGHT = [('KeyEvent', 'ArrowRight', True), ('KeyEvent', 'ArrowLeft', False)]
 LEFT = [('KeyEvent', 'ArrowLeft', True), ('KeyEvent', 'ArrowRight', False)]
 
 def main():
-    env = gym.make('flashgames.DuskDrive-v0')
+    env = gym.make('flashgames.CoasterRacer-v0')
+    #env = gym.make('flashgames.DuskDrive-v0')
     env.configure(remotes=1)  # automatically creates a local docker container
     observation_n = env.reset()
 
