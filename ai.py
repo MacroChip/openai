@@ -17,15 +17,24 @@ def main():
     observation_n, reward_n, done_n, info = env.step(action_n)
     env.render()
 
+    steps_since_decision_made = 0
+    reward_sum = 0
+
     while True:
-        current_action = determine_action(current_action, reward_n)
+        if (steps_since_decision_made >= 10):
+            current_action = determine_action(current_action, reward_sum)
+            steps_since_decision_made = 0
+            reward_sum = 0
         action_n = [current_action for ob in observation_n]
         observation_n, reward_n, done_n, info = env.step(action_n)
+        reward_sum += reward_n[0]
+        steps_since_decision_made += 1
         env.render()
 
 
-def determine_action(current_action, reward_n):
-    if (reward_n[0] > 0):
+def determine_action(current_action, reward_sum):
+    if (reward_sum > 0):
+        print("ACTION SAME")
         next_action = current_action #keep doing what you are doing
     else:
         print("ACTION CHANGED")
